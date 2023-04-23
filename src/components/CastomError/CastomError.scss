@@ -1,0 +1,30 @@
+@import '../../App.scss';
+
+.error__container {
+  background: $burgundy-color;
+  height: 100vh;
+  box-sizing: padding-box;
+  padding: $default-padding-height $default-padding-width;
+  box-sizing: border-box;
+}
+
+.header-error__conatiner {
+  padding: $default-padding-height $default-padding-width;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.error-text {
+  padding: $default-padding-height $default-padding-width;
+  font-size: 100px;
+  color: $beige-color;
+  opacity: 0.7;
+}
+.apology-text {
+  font-size: 20px;
+  padding: $default-padding-height $default-padding-width;
+  color: $beige-color;
+  opacity: 0.5;
+}
