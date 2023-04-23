@@ -15,9 +15,9 @@ export class ProcedureService {
         body: JSON.stringify({}),
       });
 
-      log('api-success', '[USER] Register', data);
+      log('api-success', '[PROCEDURE] Add', data);
     } catch (error) {
-      log('api-error', '[USER] Register: ', error);
+      log('api-error', '[PROCEDURE] Add: ', error);
       throw error;
     }
   }
