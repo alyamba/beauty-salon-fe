@@ -1,0 +1,15 @@
+@import '../../App.scss';
+
+.logo {
+  @include logo-font;
+  color: $header-text-color;
+}
+
+nav {
+  padding: $default-padding-heaght $default-padding-width;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $brown-color;
+}

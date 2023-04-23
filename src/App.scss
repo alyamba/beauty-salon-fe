@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500&display=swap');
+
+@mixin logo-font {
+  font-family: 'Cinzel', serif;
+  font-size: 30px;
+  user-select: none;
+}
+
+$main-font-style: 'Raleway', sans-serif;
+$default-padding-heaght: 20px;
+$default-padding-width: 120px;
+$header-text-color: white;
+$brown-color: rgb(106, 51, 50);
+$beige-color: #fbf0ec;
+$dark-beige-color: #e3bbb5;
+$burgundy-color: #572437;
+
+body {
+  font-family: $main-font-style;
+  font-size: 20px;
+  background: $beige-color;
+  min-height: 100vh;
+  position: relative;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  padding: $default-padding-heaght * 2 $default-padding-width
+    $default-padding-heaght * 15;
+}
