@@ -37,16 +37,14 @@ button {
 }
 
 .mainBtn {
-  background: none;
+  background: $brown-color;
+  margin: 6px;
   padding: 6px;
   border-radius: 6px;
-}
-
-.headerMainBtn {
   border: 0px;
   color: $header-text-color;
 }
 
-.headerMainBtn:hover{
-  box-shadow:  0.2em 0.2em 0.2em rgba(0, 0, 0, 0.1);
+.mainBtn:hover {
+  box-shadow: 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.1);
 }

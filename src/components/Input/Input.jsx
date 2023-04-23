@@ -1,13 +1,14 @@
 import './Input.scss';
 import React from 'react';
 
-const Input = (placeholder, setValue = () => {}, value, type) => {
+const Input = ({ value, setValue = () => {}, placeholder, type }) => {
   return (
     <input
       placeholder={placeholder}
       onChange={setValue}
       value={value}
-      className={type}
+      type={type}
+      className='form__input'
     />
   );
 };

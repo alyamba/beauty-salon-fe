@@ -8,7 +8,7 @@
 }
 
 $main-font-style: 'Raleway', sans-serif;
-$default-padding-heaght: 20px;
+$default-padding-height: 20px;
 $default-padding-width: 120px;
 $header-text-color: white;
 $brown-color: rgb(106, 51, 50);
@@ -30,6 +30,31 @@ p {
 }
 
 main {
-  padding: $default-padding-heaght * 2 $default-padding-width
-    $default-padding-heaght * 15;
+  padding: $default-padding-height * 2 $default-padding-width
+    $default-padding-height * 15;
+}
+
+.form__container {
+  background: $dark-beige-color;
+  margin: $default-padding-height * 2 $default-padding-width * 3;
+  padding: $default-padding-height * 2 $default-padding-width;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 24px;
+  text-align: center;
+  padding: 40px;
+  font-weight: 700;
+  color: $burgundy-color;
+}
+
+.paragraph-small{
+  padding-top: 8px;
+  font-size: 12px;
+  color:$burgundy-color;
+  font-weight: 600;
 }

@@ -13,7 +13,7 @@ footer {
   align-items: center;
   user-select: none;
   font-size: 16px;
-  padding: $default-padding-heaght * 2 $default-padding-width;
+  padding: $default-padding-height * 2 $default-padding-width;
 }
 
 hr {
@@ -33,14 +33,15 @@ hr {
   margin: 30px;
   position: relative;
   cursor: pointer;
-  line-height: 1;}
+  line-height: 1;
+}
 
 .about-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  
-  p{
+
+  p {
     padding: 10px;
   }
 }
