@@ -8,7 +8,9 @@ const Header = () => {
     <nav>
       <p className="logo">Bloom</p>
       <div>
-        <Button text="Home" style="headerLink" />
+        <Link to="/home">
+          <Button text="Home" style="headerLink" />
+        </Link>
         <Button text="Услуги" style="headerLink" />
         <Button text="Аккаунт" style="headerLink" />
       </div>
