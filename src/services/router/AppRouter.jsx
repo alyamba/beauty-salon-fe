@@ -1,18 +1,22 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import {
-  CastomErrorPage,
+  CustomErrorPage,
   HomePage,
   LoginPage,
   RegisterPage,
-  ProceduresPage
+  ProceduresPage,
+  AccountPage,
+  LoginAdminPage,
 } from '../../pages';
 
 export const ROUTE_PATH = {
   login: '/login',
   register: '/register',
   home: '/home',
-  procedures: 'procedures'
+  procedures: '/procedures',
+  account: '/account',
+  admin: '/admin'
 };
 
 const AppRouter = () => {
@@ -22,7 +26,9 @@ const AppRouter = () => {
       <Route path={ROUTE_PATH.login} element={<LoginPage />} />
       <Route path={ROUTE_PATH.register} element={<RegisterPage />} />
       <Route path={ROUTE_PATH.procedures} element={<ProceduresPage />} />
-      <Route path="*" element={<CastomErrorPage />} />
+      <Route path={ROUTE_PATH.account} element={<AccountPage />} />
+      <Route path={ROUTE_PATH.admin} element={<LoginAdminPage />} />
+      <Route path="*" element={<CustomErrorPage />} />
     </Routes>
   );
 };

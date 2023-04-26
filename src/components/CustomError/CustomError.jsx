@@ -1,9 +1,9 @@
 import React from 'react';
-import './CastomError.scss';
+import './CustomError.scss';
 import { Link } from 'react-router-dom';
 import Button from '../Button/Button';
 
-const CastomError = () => {
+const CustomError = () => {
   return (
     <div className="error__container">
       <div className="header-error__conatiner">
@@ -24,4 +24,4 @@ const CastomError = () => {
   );
 };
 
-export default CastomError;
+export default CustomError;

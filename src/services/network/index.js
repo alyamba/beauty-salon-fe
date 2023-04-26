@@ -5,6 +5,7 @@ import { MasterService } from './master';
 import { OrderService } from './order';
 import { ProcedureService } from './procedure';
 import { SlotService } from './slot';
+import { AdminService } from './admin';
 
 export const api = ky.extend({
   timeout: 10000,
@@ -12,7 +13,7 @@ export const api = ky.extend({
     beforeRequest: [
       (request) => {
         request.headers.set('content-type', 'application/json');
-        console.log('request: ', request)
+        console.log('request: ', request);
         return ky(request);
       },
     ],
@@ -27,4 +28,5 @@ export {
   OrderService,
   ProcedureService,
   SlotService,
+  AdminService,
 };
