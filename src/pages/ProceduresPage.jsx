@@ -1,5 +1,5 @@
 import React from 'react';
-import { Footer, Header, Table } from '../components';
+import { Footer, Header } from '../components';
 
 const ProceduresPage = () => {
   const testObj = [
@@ -42,7 +42,6 @@ const ProceduresPage = () => {
     <div>
       <Header />
       <main>
-        <Table />
       </main>
       <Footer />
     </div>

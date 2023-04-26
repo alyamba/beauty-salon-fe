@@ -4,6 +4,5 @@ import Header from './Header/Header';
 import Input from './Input/Input';
 import HomeMainLayout from './HomeMainLayout/HomeMainLayout';
 import CustomError from './CustomError/CustomError';
-import Table from './Table/Table';
 
-export { Button, Footer, Header, Input, HomeMainLayout, CustomError, Table };
+export { Button, Footer, Header, Input, HomeMainLayout, CustomError };
