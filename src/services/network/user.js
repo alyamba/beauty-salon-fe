@@ -22,21 +22,26 @@ export class UserService {
 
       log('api-success', '[USER] Register', data);
     } catch (error) {
-      log('api-error', '[USER] Register: ', error);
-      throw error;
+      const customError = await error.response.text();
+      log('api-error', '[USER] Register: ', customError);
+      throw customError;
     }
   }
 
   static async login(email = '', password = '') {
     try {
-      const data = await api.post(`${BASE_API}${this.endpoints.login}`, {
+      const response = await api.post(`${BASE_API}${this.endpoints.login}`, {
         body: JSON.stringify({ email, password }),
       });
 
+      const data = await response.json();
+
       log('api-success', '[USER] Login', data);
+      return data;
     } catch (error) {
-      log('api-error', '[USER] Login: ', error);
-      throw error;
+      const customError = await error.response.text();
+      log('api-error', '[USER] Login: ', customError);
+      throw customError;
     }
   }
 }

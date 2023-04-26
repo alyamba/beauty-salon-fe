@@ -1,15 +1,22 @@
 import React, { useState } from 'react';
 import { Button, Footer, Header, Input } from '../components';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { LOCAL_STORAGE_KEYS, UserService } from '../services/network';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const navigate = useNavigate();
+
   const login = async (email, password) => {
     try {
       console.log('PRESSED: ', process.env.NODE_ENV);
-      await UserService.login(email, password);
+      const userData = await UserService.login(email, password);
+      if (userData?.id) {
+        localStorage.setItem(LOCAL_STORAGE_KEYS.user, JSON.stringify(userData));
+        navigate('/home');
+      }
     } catch (error) {
       console.log('ERROR: ', error);
       // errorHandler(error)

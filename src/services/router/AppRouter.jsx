@@ -5,12 +5,14 @@ import {
   HomePage,
   LoginPage,
   RegisterPage,
+  ProceduresPage
 } from '../../pages';
 
 export const ROUTE_PATH = {
   login: '/login',
   register: '/register',
   home: '/home',
+  procedures: 'procedures'
 };
 
 const AppRouter = () => {
@@ -19,6 +21,7 @@ const AppRouter = () => {
       <Route path={ROUTE_PATH.home} element={<HomePage />} />
       <Route path={ROUTE_PATH.login} element={<LoginPage />} />
       <Route path={ROUTE_PATH.register} element={<RegisterPage />} />
+      <Route path={ROUTE_PATH.procedures} element={<ProceduresPage />} />
       <Route path="*" element={<CastomErrorPage />} />
     </Routes>
   );

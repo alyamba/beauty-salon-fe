@@ -8,9 +8,18 @@ import { SlotService } from './slot';
 
 export const api = ky.extend({
   timeout: 10000,
+  hooks: {
+    beforeRequest: [
+      (request) => {
+        request.headers.set('content-type', 'application/json');
+        console.log('request: ', request)
+        return ky(request);
+      },
+    ],
+  },
 });
 
-export * from './constants';
+export * from '../utils/constants';
 export {
   UserService,
   CategoryService,

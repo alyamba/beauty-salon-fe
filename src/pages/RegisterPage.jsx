@@ -58,7 +58,7 @@ const RegisterPage = () => {
           />
           <p className="paragraph-small">У тебя уже есть аккаунт?</p>
           <Link to="/login" style={{ color: 'black', padding: '4px' }}>
-            <p className="paragraph-small">Войди здесь</p>
+            <p className="paragraph-small">Войти можно здесь</p>
           </Link>
         </div>
       </main>
