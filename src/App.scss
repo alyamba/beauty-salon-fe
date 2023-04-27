@@ -11,7 +11,7 @@ $main-font-style: 'Raleway', sans-serif;
 $default-padding-height: 20px;
 $default-padding-width: 120px;
 $header-text-color: white;
-$brown-color: rgb(106, 51, 50);
+$brown-color: #6a3332;
 $beige-color: #fbf0ec;
 $dark-beige-color: #e3bbb5;
 $burgundy-color: #572437;
@@ -60,14 +60,28 @@ main {
   font-weight: 600;
 }
 
-.about-user__container{
+.about-user__container {
   background: $dark-beige-color;
   border-radius: 8px;
   margin: $default-padding-height $default-padding-width;
   padding: $default-padding-height $default-padding-width;
 
-  .title{
+  .title {
     text-align: start;
     padding: 8px 0;
+  }
+}
+
+.procedure-contol__container {
+  margin: $default-padding-height $default-padding-width;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .icon-btn {
+    background: $brown-color;
+    padding: 8px;
+    height: fit-content;
+    border-radius: 4px;
   }
 }

@@ -1,0 +1,53 @@
+@import '../../App.scss';
+
+.icon {
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  margin: 0;
+}
+
+.card-title-text__container {
+  display: flex;
+  flex-direction: row;
+}
+
+.card-title__conatiner {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card__container {
+  margin: $default-padding-height $default-padding-width;
+  padding: $default-padding-height $default-padding-width;
+  background-color: $header-text-color;
+  border: 1px solid $dark-beige-color;
+  border-radius: 8px;
+  color: $burgundy-color;
+
+  .title {
+    padding: 8px 10px 8px 0;
+  }
+}
+
+.category-text {
+  padding: 4px;
+  width: fit-content;
+  background: $dark-beige-color;
+  color: $header-text-color;
+  font-size: 12px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.text-about {
+  margin: 8px 0px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.duration {
+  font-style: italic;
+}
