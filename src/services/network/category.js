@@ -20,13 +20,12 @@ export class CategoryService {
     }
   }
 
-  static async getAll() {
+  static async getAllCategory() {
     try {
-      const data = await api.get(`${BASE_API}${this.endpoints.getAll}`, {
-        body: JSON.stringify({}),
-      });
-
+      const response = await api.get(`${BASE_API}${this.endpoints.getAll}`);
+      const data = await response.json()
       log('api-success', '[CATEGORY] getAll', data);
+      return data
     } catch (error) {
       log('api-error', '[CATEGORY] getAll: ', error);
       throw error;

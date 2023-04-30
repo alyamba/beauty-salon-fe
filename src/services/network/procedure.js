@@ -21,4 +21,24 @@ export class ProcedureService {
       throw error;
     }
   }
+
+  static async getAllByCategory(categoryId, categoryName) {
+    try {
+      console.log('body: ', {
+        body: JSON.stringify({ id: categoryId, name: categoryName }),
+      });
+      const response = await api.post(
+        `${BASE_API}${this.endpoints.getAllByCategory}`,
+        {
+          body: JSON.stringify({ id: categoryId, name: categoryName }),
+        },
+      );
+      const data = await response.json();
+      log('api-success', '[PROCEDURE] getAllByCategory', data);
+      return data;
+    } catch (error) {
+      log('api-error', '[PROCEDURE] getAllByCategory: ', error);
+      throw error;
+    }
+  }
 }

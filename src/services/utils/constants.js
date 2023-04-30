@@ -4,4 +4,5 @@ export const LOCAL_STORAGE_KEYS = {
   user: 'userData',
   procedures: 'procedures',
   admin: 'adminData',
+  category: 'category'
 };
