@@ -5,6 +5,8 @@ import CustomErrorPage from './CustomErrorPage';
 import ProceduresPage from './ProceduresPage';
 import AccountPage from './AccountPage';
 import LoginAdminPage from './LoginAdminPage';
+import MastersPage from './MastersPage';
+import CategoriesPage from './CategoriesPage';
 
 export {
   HomePage,
@@ -13,5 +15,7 @@ export {
   CustomErrorPage,
   ProceduresPage,
   AccountPage,
-  LoginAdminPage
+  LoginAdminPage,
+  MastersPage,
+  CategoriesPage
 };

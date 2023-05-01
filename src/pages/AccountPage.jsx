@@ -17,6 +17,7 @@ const AccountPage = () => {
         </div>
         <div>
           <p className="title">Информация о Ваших заказах</p>
+          
         </div>
       </main>
       <Footer />

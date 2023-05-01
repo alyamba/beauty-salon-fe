@@ -44,7 +44,7 @@ const ProceduresPage = () => {
 
   const getAllCategory = async () => {
     try {
-      const categoryData = await CategoryService.getAllCategory();
+      const categoryData = await CategoryService.getAll();
       if (categoryData) {
         setCategories(categoryData);
       }
@@ -114,6 +114,7 @@ const ProceduresPage = () => {
       // errorHandler(error)
     }
   };
+
   const onEditProcedure = (procedureId, categoryId) => {
     const procedure = categories
       .find((el) => el.id === categoryId)
@@ -126,6 +127,7 @@ const ProceduresPage = () => {
     setEditProcedureModalActive(true);
     setEditingProcedureId(procedureId);
   };
+
   const onSaveEditProcedure = async () => {
     try {
       const category = categories.find((el) => el.id === +selectedCategory);
@@ -179,6 +181,7 @@ const ProceduresPage = () => {
       // errorHandler(error)
     }
   };
+
   const onDeleteProcedure = async (procedureId, categoryId) => {
     try {
       const procedure = categories
@@ -207,13 +210,14 @@ const ProceduresPage = () => {
       // errorHandler(error)
     }
   };
+
   const handleOnSortProcedures = () => {
     switch (sortingOption) {
       case null:
         setSortingOption('asc');
         setSortedCategories(
           categories
-            .map(el => el)
+            .map((el) => el)
             .sort((a, b) => (a.name > b.name ? 1 : -1))
             .map((el) => {
               if (el.proceduresList) {
@@ -232,7 +236,7 @@ const ProceduresPage = () => {
         setSortingOption('desc');
         setSortedCategories(
           categories
-            .map(el => el)
+            .map((el) => el)
             .sort((a, b) => (a.name < b.name ? 1 : -1))
             .map((el) => {
               if (el.proceduresList) {
@@ -325,6 +329,7 @@ const ProceduresPage = () => {
                   price={procedure.price}
                   editProcedure={(id) => onEditProcedure(id, category.id)}
                   deleteProcedure={(id) => onDeleteProcedure(id, category.id)}
+                  chooseProcedure={(id) => onChooseProcedure(id)}
                 />
               ))
             : null}

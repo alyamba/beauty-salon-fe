@@ -1,0 +1,18 @@
+@import '../../App.scss';
+
+.category__container {
+  margin: $default-padding-height;
+  padding: $default-padding-height;
+  width: 330px;
+  height: 100px;
+ 
+  background-color: $header-text-color;
+  border: 1px solid $dark-beige-color;
+  border-radius: 8px;
+  color: $burgundy-color;
+
+  .title {
+    padding: 8px 10px 8px 0;
+    text-align: start;
+  }
+}

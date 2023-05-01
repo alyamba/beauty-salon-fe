@@ -72,7 +72,9 @@ main {
   }
 }
 
-.procedure-contol__container {
+.procedure-contol__container,
+.master-contol__container,
+.category-contol__container {
   margin: $default-padding-height $default-padding-width;
   display: flex;
   flex-direction: row;
@@ -87,22 +89,18 @@ main {
   }
 }
 
-ul {
+.category-list {
   margin: $default-padding-height $default-padding-width;
-  padding: 0px $default-padding-width;
-  list-style: none;
-}
-
-li {
   padding: 0px;
-  font-size: 24px;
-  border-bottom: 1px solid rgb(212, 212, 212);
-  font-weight: 300;
-  margin: 20px;
 }
 
 .category-list:hover {
+  font-weight: 500;
   cursor: pointer;
+}
+
+.category-list {
+  border-bottom: 1px solid $dark-beige-color;
 }
 
 select {
@@ -112,4 +110,23 @@ select {
   border: 1px solid $beige-color;
   padding: 8px;
   border-radius: 4px;
+}
+
+.categories__container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.choose-procedures__container {
+  width: 100%;
+  height: 150px;
+  overflow-y: scroll;
+}
+
+.choose-slots__container {
+  width: 100%;
+  height: 150px;
+  overflow-y: scroll;
 }

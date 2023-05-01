@@ -7,6 +7,7 @@ export class ProcedureService {
     edit: '/procedure/edit',
     remove: '/procedure/remove',
     getAllByCategory: '/procedure/getAllByCategory',
+    getAll: '/procedure/getAll',
   };
 
   static async add(
@@ -92,6 +93,18 @@ export class ProcedureService {
       return data;
     } catch (error) {
       log('api-error', '[PROCEDURE] getAllByCategory: ', error);
+      throw error;
+    }
+  }
+
+  static async getAll() {
+    try {
+      const response = await api.get(`${BASE_API}${this.endpoints.getAll}`);
+      const data = await response.json();
+      log('api-success', '[PROCEDURE] Get All', data);
+      return data;
+    } catch (error) {
+      log('api-error', '[PROCEDURE] Get All: ', error);
       throw error;
     }
   }

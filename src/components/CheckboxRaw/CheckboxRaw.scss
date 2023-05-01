@@ -1,0 +1,19 @@
+.checkbox-raw-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.checkbox-raw-title {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+#checkbox {
+  width: 16px;
+  height: 16px;
+}
