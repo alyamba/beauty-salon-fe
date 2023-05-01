@@ -16,6 +16,8 @@ input {
   border: 1px solid $beige-color;
   outline-color: $burgundy-color;
   max-width: 500px;
+  font-family: $main-font-style;
+  font-weight: 500;
 }
 
 .searching-input {

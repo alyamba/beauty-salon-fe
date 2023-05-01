@@ -5,19 +5,73 @@ export class ProcedureService {
   static endpoints = {
     add: '/procedure/add',
     edit: '/procedure/edit',
-    remove: '/procedure/edit',
+    remove: '/procedure/remove',
     getAllByCategory: '/procedure/getAllByCategory',
   };
 
-  static async add() {
+  static async add(
+    name = '',
+    description = '',
+    category = {},
+    slotSize = '',
+    price = '',
+  ) {
     try {
       const data = await api.post(`${BASE_API}${this.endpoints.add}`, {
-        body: JSON.stringify({}),
+        headers: {
+          adminPassword: '12345',
+        },
+        body: JSON.stringify({ name, description, category, slotSize, price }),
       });
 
       log('api-success', '[PROCEDURE] Add', data);
     } catch (error) {
       log('api-error', '[PROCEDURE] Add: ', error);
+      throw error;
+    }
+  }
+  static async editProcedure(
+    id,
+    name = '',
+    description = '',
+    category = {},
+    slotSize = '',
+    price = '',
+  ) {
+    try {
+      const data = await api.patch(`${BASE_API}${this.endpoints.edit}`, {
+        headers: {
+          adminPassword: '12345',
+        },
+        body: JSON.stringify({
+          id,
+          name,
+          description,
+          category,
+          slotSize,
+          price,
+        }),
+      });
+
+      log('api-success', '[PROCEDURE] Edit', data);
+    } catch (error) {
+      log('api-error', '[PROCEDURE] Edit: ', error);
+      throw error;
+    }
+  }
+
+  static async deleteProcedure(procedure = {}) {
+    try {
+      const data = await api.put(`${BASE_API}${this.endpoints.remove}`, {
+        headers: {
+          adminPassword: '12345',
+        },
+        body: JSON.stringify(procedure),
+      });
+
+      log('api-success', '[PROCEDURE] Remove', data);
+    } catch (error) {
+      log('api-error', '[PROCEDURE] Remove: ', error);
       throw error;
     }
   }

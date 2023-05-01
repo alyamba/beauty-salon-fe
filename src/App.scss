@@ -104,3 +104,12 @@ li {
 .category-list:hover {
   cursor: pointer;
 }
+
+select {
+  width: 100%;
+  font-size: 16px;
+  margin: 12px 20px 12px 0px;
+  border: 1px solid $beige-color;
+  padding: 8px;
+  border-radius: 4px;
+}

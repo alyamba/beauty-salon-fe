@@ -6,6 +6,7 @@ import Button from '../Button/Button';
 import { LOCAL_STORAGE_KEYS } from '../../services/network';
 
 const ProcedureCard = ({
+  id,
   name,
   description,
   category,
@@ -50,8 +51,8 @@ const ProcedureCard = ({
         ) : null}
       </div>
       <p className="category-text">{category.name}</p>
-      <p className='text-about duration'>Длительность: {slotSize} час</p>
-      <p className='text-about'>{description}</p>
+      <p className="text-about duration">Длительность: {slotSize} час</p>
+      <p className="text-about">{description}</p>
     </div>
   );
 };
