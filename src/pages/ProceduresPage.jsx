@@ -24,7 +24,9 @@ const ProceduresPage = () => {
   const [categories, setCategories] = useState([]);
   const [searchedCategories, setSearchedCategories] = useState([]);
   const [searchedProcedures, setSearchedProcedures] = useState([]);
+  const [sortedCategories, setSortedCategories] = useState([]);
 
+  const [sortingOption, setSortingOption] = useState(null);
   const [openedCategories, setOpenedCategories] = useState([]);
 
   const [searchCategoryValue, setSearchCategoryValue] = useState('');
@@ -36,7 +38,7 @@ const ProceduresPage = () => {
   const [editingProcedureId, setEditingProcedureId] = useState(null);
   const [procedureName, setProcedureName] = useState('');
   const [description, setDescription] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState({});
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const [slotSize, setSlotSize] = useState('');
   const [price, setPrice] = useState('');
 
@@ -205,7 +207,54 @@ const ProceduresPage = () => {
       // errorHandler(error)
     }
   };
-  const sortProcedure = () => {};
+  const handleOnSortProcedures = () => {
+    switch (sortingOption) {
+      case null:
+        setSortingOption('asc');
+        setSortedCategories(
+          categories
+            .map(el => el)
+            .sort((a, b) => (a.name > b.name ? 1 : -1))
+            .map((el) => {
+              if (el.proceduresList) {
+                return {
+                  ...el,
+                  proceduresList: el.proceduresList.sort((a, b) =>
+                    a.name > b.name ? 1 : -1,
+                  ),
+                };
+              }
+              return el;
+            }),
+        );
+        break;
+      case 'asc':
+        setSortingOption('desc');
+        setSortedCategories(
+          categories
+            .map(el => el)
+            .sort((a, b) => (a.name < b.name ? 1 : -1))
+            .map((el) => {
+              if (el.proceduresList) {
+                return {
+                  ...el,
+                  proceduresList: el.proceduresList.sort((a, b) =>
+                    a.name < b.name ? 1 : -1,
+                  ),
+                };
+              }
+              return el;
+            }),
+        );
+        break;
+      case 'desc':
+        setSortingOption(null);
+        setSortedCategories([]);
+        break;
+      default:
+        break;
+    }
+  };
   const onChangeSearchCategoryValue = (value) => {
     setSearchCategoryValue(value);
     if (value) {
@@ -312,7 +361,7 @@ const ProceduresPage = () => {
           <Button
             text={<img src={sortIcon} className="icon" />}
             style="icon-btn"
-            onPress={sortProcedure}
+            onPress={handleOnSortProcedures}
           />
         </div>
         <div>
@@ -320,6 +369,8 @@ const ProceduresPage = () => {
             ? renderCategoriesList(searchedCategories)
             : searchProcedureValue
             ? renderCategoriesList(searchedProcedures)
+            : sortingOption
+            ? renderCategoriesList(sortedCategories)
             : renderCategoriesList(categories)}
         </div>
       </main>
@@ -348,7 +399,7 @@ const ProceduresPage = () => {
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
         >
-          <option value="" disabled>
+          <option selected value="" disabled>
             Выберите категорию
           </option>
           {categories.map((catogory) => (

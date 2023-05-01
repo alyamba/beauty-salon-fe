@@ -51,7 +51,7 @@ const ProcedureCard = ({
         ) : null}
       </div>
       <p className="category-text">{category.name}</p>
-      <p className="text-about duration">Длительность: {slotSize} час</p>
+      <p className="text-about duration">Длительность: {slotSize} ч</p>
       <p className="text-about">{description}</p>
     </div>
   );
