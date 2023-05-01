@@ -22,8 +22,13 @@ const ProceduresPage = () => {
   const isAdmin = !!adminData;
 
   const [categories, setCategories] = useState([]);
+  const [searchedCategories, setSearchedCategories] = useState([]);
+  const [searchedProcedures, setSearchedProcedures] = useState([]);
+
   const [openedCategories, setOpenedCategories] = useState([]);
-  const [searchValue, setSearchValue] = useState('');
+
+  const [searchCategoryValue, setSearchCategoryValue] = useState('');
+  const [searchProcedureValue, setSearchProcedureValue] = useState('');
 
   const [newProcedureModalActive, setNewProcedureModalActive] = useState(false);
   const [editProcedureModalActive, setEditProcedureModalActive] =
@@ -201,7 +206,36 @@ const ProceduresPage = () => {
     }
   };
   const sortProcedure = () => {};
-  const searchProcedure = () => {};
+  const onChangeSearchCategoryValue = (value) => {
+    setSearchCategoryValue(value);
+    if (value) {
+      setSearchedCategories(
+        categories.filter((el) =>
+          el.name?.toLowerCase().includes(value.toLowerCase()),
+        ),
+      );
+    } else {
+      setSearchedCategories([]);
+    }
+  };
+  const onChangeSearchProcedureValue = (value) => {
+    setSearchProcedureValue(value);
+    if (value) {
+      setSearchedProcedures(
+        categories.reduce((res, category) => {
+          if (category.proceduresList) {
+            const newProceduresList = category.proceduresList.filter((el) =>
+              el.name.toLowerCase().includes(value.toLowerCase()),
+            );
+            return [...res, { ...category, proceduresList: newProceduresList }];
+          }
+          return [...res, category];
+        }, []),
+      );
+    } else {
+      setSearchedProcedures([]);
+    }
+  };
   const onProcedureCancelHandler = () => {
     if (window.confirm('Are you sure?')) {
       setProcedureName('');
@@ -219,6 +253,38 @@ const ProceduresPage = () => {
     setEditingProcedureId(null);
   };
 
+  const renderCategoriesList = (categoriesList) => {
+    if (categoriesList) {
+      return categoriesList.map((category) => (
+        <div key={category.id}>
+          <div
+            className="category-list"
+            onClick={() => handleOnCategoryPress(category)}
+          >
+            {category.name.toUpperCase()}
+          </div>
+          {category.proceduresList &&
+          !!openedCategories.find((el) => el === category.id)
+            ? category.proceduresList.map((procedure) => (
+                <ProcedureCard
+                  id={procedure.id}
+                  key={procedure.id}
+                  name={procedure.name}
+                  description={procedure.description}
+                  category={procedure.category}
+                  slotSize={procedure.slotSize}
+                  price={procedure.price}
+                  editProcedure={(id) => onEditProcedure(id, category.id)}
+                  deleteProcedure={(id) => onDeleteProcedure(id, category.id)}
+                />
+              ))
+            : null}
+        </div>
+      ));
+    }
+    return null;
+  };
+
   return (
     <div>
       <Header />
@@ -233,14 +299,14 @@ const ProceduresPage = () => {
           ) : null}
           <Input
             placeholder="Поиск по категории"
-            setValue={searchProcedure}
-            value={searchValue}
+            setValue={(e) => onChangeSearchCategoryValue(e.target.value)}
+            value={searchCategoryValue}
             style="searching-input"
           />
           <Input
             placeholder="Поиск процедуры"
-            setValue={searchProcedure}
-            value={searchValue}
+            setValue={(e) => onChangeSearchProcedureValue(e.target.value)}
+            value={searchProcedureValue}
             style="searching-input"
           />
           <Button
@@ -250,34 +316,11 @@ const ProceduresPage = () => {
           />
         </div>
         <div>
-          {categories.map((category) => (
-            <div key={category.id}>
-              <div
-                className="category-list"
-                onClick={() => handleOnCategoryPress(category)}
-              >
-                {category.name.toUpperCase()}
-              </div>
-              {category.proceduresList &&
-              !!openedCategories.find((el) => el === category.id)
-                ? category.proceduresList.map((procedure) => (
-                    <ProcedureCard
-                      id={procedure.id}
-                      key={procedure.id}
-                      name={procedure.name}
-                      description={procedure.description}
-                      category={procedure.category}
-                      slotSize={procedure.slotSize}
-                      price={procedure.price}
-                      editProcedure={(id) => onEditProcedure(id, category.id)}
-                      deleteProcedure={(id) =>
-                        onDeleteProcedure(id, category.id)
-                      }
-                    />
-                  ))
-                : null}
-            </div>
-          ))}
+          {searchCategoryValue
+            ? renderCategoriesList(searchedCategories)
+            : searchProcedureValue
+            ? renderCategoriesList(searchedProcedures)
+            : renderCategoriesList(categories)}
         </div>
       </main>
       <Footer />
