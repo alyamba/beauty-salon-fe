@@ -39,7 +39,7 @@ export class MasterService {
           id,
           name,
           procedure,
-          slots
+          slots,
         }),
       });
 

@@ -288,7 +288,7 @@ const MastersPage = () => {
           type="text"
           setValue={(e) => setMasterName(e.target.value)}
         />
-        <p>Выполняемые процедуры:</p>
+        <p >Выполняемые процедуры:</p>
         <div className="choose-procedures__container">
           {procedures.map((procedure) => (
             <CheckboxRaw

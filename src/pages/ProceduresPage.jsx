@@ -11,13 +11,15 @@ import {
 import {
   CategoryService,
   LOCAL_STORAGE_KEYS,
+  MasterService,
+  OrderService,
   ProcedureService,
 } from '../services/network';
 import sortIcon from '../resources/icons/sort.png';
+import moment from 'moment';
 
 const ProceduresPage = () => {
   const userData = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.user));
-  const isAuthorizedUser = !!userData?.id;
   const adminData = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.admin));
   const isAdmin = !!adminData;
 
@@ -41,6 +43,15 @@ const ProceduresPage = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [slotSize, setSlotSize] = useState('');
   const [price, setPrice] = useState('');
+
+  const [newOrderModalActive, setNewOrderModalActive] = useState(false);
+  const [procedureAvailableMasters, setProcedureAvailableMasters] = useState(
+    [],
+  );
+  const [orderProcedureId, setOrderProcedureId] = useState(null);
+  const [selectedMasterForOrder, setSelectedMasterForOrder] = useState(null);
+  const [selectedTimeSlotForOrder, setSelectedTimeSlotForOrder] =
+    useState(null);
 
   const getAllCategory = async () => {
     try {
@@ -306,6 +317,55 @@ const ProceduresPage = () => {
     setEditingProcedureId(null);
   };
 
+  const onChooseProcedure = async (procedureId) => {
+    try {
+      setNewOrderModalActive(true);
+      setOrderProcedureId(procedureId);
+      const masterList = await MasterService.getAll();
+      const procedureRelativeMasters = masterList.filter((master) =>
+        master.procedures.find((proc) => proc.id === procedureId),
+      );
+      setProcedureAvailableMasters(procedureRelativeMasters);
+    } catch (error) {
+      console.log('ERROR: ', error);
+      // errorHandler(error)
+    }
+  };
+
+  const handleCreateOrder = async () => {
+    try {
+      const selectedCategory = categories.find((cat) =>
+        cat.proceduresList.find((el) => el.id === orderProcedureId),
+      );
+      await OrderService.createOrder(
+        {
+          ...selectedMasterForOrder,
+          procedure: selectedMasterForOrder.procedures,
+        },
+        selectedMasterForOrder.slots.find(
+          (el) => el.id === selectedTimeSlotForOrder,
+        ).date,
+        userData,
+        selectedCategory.proceduresList.find(
+          (el) => el.id === orderProcedureId,
+        ),
+      );
+    } catch (error) {
+      console.log('ERROR: ', error);
+      // errorHandler(error)
+    }
+  };
+
+  console.log('categories: ', categories);
+
+  const onClearOrderStates = () => {
+    setNewOrderModalActive(false);
+    setOrderProcedureId(null);
+    setProcedureAvailableMasters([]);
+    setSelectedMasterForOrder(null);
+    setSelectedTimeSlotForOrder(null);
+  };
+
   const renderCategoriesList = (categoriesList) => {
     if (categoriesList) {
       return categoriesList.map((category) => (
@@ -493,6 +553,67 @@ const ProceduresPage = () => {
             style="mainBtn"
             text="Выйти"
             onPress={onProcedureCancelHandler}
+          />
+        </div>
+      </Modal>
+
+      <Modal
+        active={newOrderModalActive}
+        setActive={onClearOrderStates}
+        onClearStates={onClearOrderStates}
+      >
+        <h1>Оформление услуги</h1>
+        <select
+          name="select"
+          value={selectedCategory}
+          onChange={(e) =>
+            setSelectedMasterForOrder(
+              procedureAvailableMasters.find((el) => el.id === +e.target.value),
+            )
+          }
+        >
+          <option selected value="" disabled>
+            {procedureAvailableMasters.length
+              ? 'Выберите мастера'
+              : 'Нет доступных мастеров'}
+          </option>
+          {procedureAvailableMasters.map((master) => (
+            <option value={master.id} key={master.id}>
+              {master.name}
+            </option>
+          ))}
+        </select>
+        {console.log('MASTER: ', selectedMasterForOrder)}
+        {selectedMasterForOrder ? (
+          <select
+            name="select"
+            value={selectedCategory}
+            onChange={(e) => setSelectedTimeSlotForOrder(+e.target.value)}
+          >
+            <option selected value="" disabled>
+              Выберете время приема
+            </option>
+            {selectedMasterForOrder.slots.map((slot) => (
+              <option value={slot.id} key={slot.id}>
+                {moment(slot.date).format('LLLL')}
+              </option>
+            ))}
+          </select>
+        ) : null}
+        <div className="btns-container">
+          <Button
+            style="mainBtn"
+            text="Оформить услугу"
+            onPress={handleCreateOrder}
+          />
+          <Button
+            style="mainBtn"
+            text="Выйти"
+            onPress={() => {
+              if (window.confirm('Are you sure?')) {
+                onClearOrderStates();
+              }
+            }}
           />
         </div>
       </Modal>

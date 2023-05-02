@@ -37,11 +37,15 @@ const MasterCard = ({
           </div>
         ) : null}
       </div>
-      {procedures.map((procedure) => (
-        <p key={procedure.id} className="procedure-text">
-          {procedure.name}
-        </p>
-      ))}
+      <div className="procedures__container">
+        <p className="title">Услуги: </p>
+        {procedures.map((procedure) => (
+          <p key={procedure.id} className="procedure-text">
+            {procedure.name}
+          </p>
+        ))}
+      </div>
+      <p className='text-about title-time'>Свободные окошки: </p>
       {slots.map((slot) => (
         <p key={slot.id} className="text-about duration">
           {moment(slot.date).format('LLLL')}

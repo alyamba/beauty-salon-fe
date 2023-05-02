@@ -34,10 +34,36 @@
 
 .text-about {
   margin: 8px 0px;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 500;
+}
+
+.title-time{
+  font-weight: 600;
 }
 
 .duration {
   font-style: italic;
+  font-size: 18px;
+}
+
+.procedures__container{
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  .title{
+    font-weight: 500;
+  }
+} 
+
+.procedure-text{
+  background: #6372bd;
+  color: $header-text-color;
+  margin: 4px;
+  padding: 4px;
+  border-radius: 4px;
 }
